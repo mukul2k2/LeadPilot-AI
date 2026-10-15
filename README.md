@@ -1,75 +1,106 @@
-# LeadPilot AI — Lead Follow-Up Agent for Packaging Machinery Sales
+# 🚀 LeadPilot AI — Sales Follow-Up Command Center
 
-> **FDE Take-Home Assignment Solution**  
-> Built with Next.js (App Router), TypeScript, Tailwind CSS, and Google Gemini API.
+> An AI-powered sales follow-up copilot designed for B2B packaging equipment sales teams. It bridges the gap between scattered WhatsApp conversations and daily sales prioritization, telling every rep **who to follow up with today and what exact message to say**.
 
 ---
 
-## 🚀 Live Demo & Quick Start
+## 📌 The Problem & The 10-Second Test
 
-### 1. Run Locally
+A company manufactures and sells industrial packaging machinery ($2,000 to $50,000 equipment such as pouch fillers, carton sealers, strapping machines, and shrink wrappers) across **5 sales reps**.
+
+* **The Pain:** Leads live across messy Excel sheets and WhatsApp chats. Reps forget to follow up, good leads go cold, and the business owner has zero visibility into who needs contact today.
+* **The Solution (The 10-Second Rule):** When a sales rep opens LeadPilot AI in the morning, within 10 seconds they immediately see:
+  1. 🚨 **Overdue follow-ups** highlighted in bold red alerts with days-overdue counters.
+  2. 📅 **Today's scheduled follow-ups** ranked by urgency (Hot leads first).
+  3. 💬 **Contextual, ready-to-send WhatsApp drafts** for every lead.
+
+---
+
+## ✨ Key Features
+
+* **⚡ Priority Follow-Up Radar:** Automatically surfaces overdue and today's due leads ranked by urgency so reps never miss high-intent buyers.
+* **💬 WhatsApp Chat History:** WhatsApp-styled message bubbles displaying complete buyer-rep negotiations, timestamps, and delivery requirements.
+* **🤖 Multi-Model AI Agent:** Automatically analyzes conversation context to:
+  * Classify leads as **Hot**, **Warm**, or **Cold**.
+  * Provide a concise **1-line rationale** explaining the score.
+  * Schedule the **next follow-up date**.
+  * Generate a natural, high-conversion **WhatsApp follow-up draft**.
+* **🔄 Live Agent Re-evaluation:** Reps can log incoming buyer WhatsApp replies, instantly prompting the AI agent to re-evaluate the deal and update the draft.
+* **✅ One-Click Actions:**
+  * Edit drafts directly.
+  * Launch **WhatsApp Web** with pre-filled text (`wa.me`).
+  * **"Mark as Sent"** logs the message to chat and automatically advances the follow-up timeline.
+* **🔑 Zero-Config Default + BYOK (Bring Your Own Key):**
+  * Works out of the box using server environment keys or intelligent offline heuristics.
+  * In-app settings modal lets users select between **Google Gemini** (`gemini-3.5-flash-lite`, `gemini-3.8-flash`) or **OpenAI-compatible models** (`gpt-4o-mini`, Groq, DeepSeek) and provide their own API keys with live connectivity testing.
+* **👥 Sales Rep Filtering:** View team-wide pipeline metrics or filter by individual sales reps (*Arun Verma, Neha Patil, Karan Mehta, Vikram Singh, Sneha Rao*).
+
+---
+
+## 🛠️ Architecture & Tech Stack
+
+| Layer | Technology |
+| :--- | :--- |
+| **Framework** | **Next.js 16 (App Router)** |
+| **Language** | **TypeScript** |
+| **Styling** | **Tailwind CSS (v4)** |
+| **Icons** | **Lucide React** |
+| **Primary AI Engine** | **Google Gemini API (`@google/genai` SDK)** |
+| **BYOK Providers** | **OpenAI, Groq, DeepSeek** via unified adapter |
+| **Persistence** | **LocalStorage** with zero-downtime heuristic fallback |
+
+---
+
+## 🚀 Quick Start Guide
+
+### 1. Prerequisites
+* **Node.js:** v18.18.0 or higher
+* **npm:** v9.0.0 or higher
+
+### 2. Installation
 ```bash
-# 1. Install dependencies
+# Clone the repository
+git clone https://github.com/<your-username>/LeadPilot-AI.git
+cd LeadPilot-AI
+
+# Install dependencies
 npm install
+```
 
-# 2. (Optional) Add your Gemini API Key in .env.local
+### 3. Environment Configuration (Optional)
+Create a `.env.local` file in the root directory:
+```env
+# Optional: Add your Gemini API Key (or enter it directly via in-app settings)
 GEMINI_API_KEY=your_gemini_api_key_here
+```
+*(Note: If no API key is provided, the application runs on its built-in rule-based heuristic fallback engine with zero errors).*
 
-# 3. Start development server
+### 4. Run Development Server
+```bash
 npm run dev
 ```
-Open [http://localhost:3000](http://localhost:3000) in your browser.
-
-*(Note: **Zero-Config Default with BYOK**: The app works out-of-the-box with pre-configured server environment keys or intelligent heuristic fallback. Reviewers can click the top-bar model button to switch between Google Gemini models, OpenAI, Groq, or DeepSeek and provide their own API keys).*
-
-### 2. Deploy to Vercel (1-Click)
-1. Push this repository to GitHub.
-2. Go to [vercel.com](https://vercel.com) → Import Git Repository.
-3. Add Environment Variable:
-   - `GEMINI_API_KEY`: `your_gemini_api_key`
-4. Click **Deploy**. The app is ready to share with reviewers immediately!
+Open **[http://localhost:3000](http://localhost:3000)** in your browser.
 
 ---
 
-## 📋 Assignment Requirements Compliance Checklist
+## ☁️ 1-Click Deployment to Vercel
 
-| Requirement | Implementation Details | Status |
-| :--- | :--- | :---: |
-| **At least 20 sample leads** | 20 rich B2B packaging equipment leads across carton sealers, pouch fillers, shrink wrappers, and capping lines. | ✅ Pass |
-| **At least 10 WhatsApp chats** | 20 realistic conversational transcripts between buyers and reps with timestamps and objections. | ✅ Pass |
-| **Hot, Warm, or Cold tagging** | Automated tagging via Gemini API with 1-line crisp rationale. | ✅ Pass |
-| **Set next follow-up date** | Dynamic calculation based on urgency (Today/Tomorrow for Hot, 2-5d for Warm, 14-30d for Cold). | ✅ Pass |
-| **Draft next follow-up message** | Tailored, professional WhatsApp messages generated for each lead context. | ✅ Pass |
-| **Today's follow-ups at top** | Priority Queue ranks Overdue follow-ups first (flagged in red), followed by Due Today tasks. | ✅ Pass |
-| **Overdue follow-ups stand out** | Prominent red alert borders, badges, and days-overdue counters. | ✅ Pass |
-| **Lead drawer with chat & draft** | Slide-over drawer with WhatsApp bubbles, AI rationale, date picker, and editable draft desk. | ✅ Pass |
-| **Edit draft & mark as sent** | Rep can edit draft text, copy it, open WhatsApp Web, or click "Mark as Sent" to update timeline. | ✅ Pass |
-| **Add new lead or new chat** | "+ Add New Lead" modal & "Log WhatsApp Message" trigger real-time AI re-evaluation. | ✅ Pass |
-| **Out of scope compliance** | No login, no fake payments, strictly focused on sales rep productivity. | ✅ Pass |
+1. Push this repository to your GitHub account.
+2. Sign in to **[vercel.com](https://vercel.com)** and click **"Add New"** → **"Project"**.
+3. Import your `LeadPilot-AI` repository.
+4. Add the environment variable:
+   * `GEMINI_API_KEY`: `your_gemini_api_key`
+5. Click **Deploy**. Your app will be live at `https://your-project.vercel.app` in under 60 seconds!
 
 ---
 
-## 🎬 3-Minute Video Walkthrough Script (For Candidate Submission)
+## 📊 Dataset Overview
 
-*Use this outline to record your demo video:*
-
-* **0:00 - 0:30 | The 10-Second Test & The Problem:**
-  > *"Hi everyone, this is LeadPilot AI. The company sells packaging equipment with 5 sales reps, but reps forget to follow up, and good leads go cold. The owner wants one screen that tells reps who to follow up with today and what to say. When a rep opens this screen, within 10 seconds they see: 4 overdue follow-ups in red at the top, and today's due follow-ups ranked by urgency."*
-
-* **0:30 - 1:15 | Reviewing an Urgent Lead & Draft Copy:**
-  > *"Let's look at Rajesh Sharma from Apex Agro. The system highlights him as 1 day overdue on a ₹14 Lakh pouch filler deal. I click 'Review & Send'. Here is the full WhatsApp transcript where he asked for a 50% advance deal. The AI diagnosed this as 'Hot' because the PO is ready today, and drafted an exact WhatsApp message ready to send. I can edit this draft, click 'Open in WhatsApp Web', or click 'Mark as Sent'. Watch what happens when I click 'Mark as Sent'—it logs the message to the chat and advances the follow-up date."*
-
-* **1:15 - 2:00 | Real-Time Agent Re-evaluation:**
-  > *"Now, what if the buyer texts back with a new condition? Let's simulate that: I type 'Can you give an extra 5% discount if we place the order by tomorrow?' and click 'Log & AI Run'. The Gemini agent instantly re-analyzes the conversation, updates the rationale, and produces a revised draft addressing the discount."*
-
-* **2:00 - 2:40 | Adding a New Lead & Filtering by Rep:**
-  > *"I can also filter by individual sales reps using the top bar—for example, viewing only Arun Verma's deals. When a rep gets a new inquiry, they click '+ Add New Lead', fill in the details, and the agent immediately scores the lead and drafts the initial outreach."*
-
-* **2:40 - 3:00 | Conclusion & Architecture:**
-  > *"LeadPilot AI is built with Next.js App Router, TypeScript, Tailwind CSS, and Google Gemini API with strict structured JSON output and offline resilience. Thank you!"*
+* **20 Realistic B2B Packaging Machinery Leads:** Covers machinery ranging from $2,000 to $50,000 (multihead weighers, continuous band sealers, shrink tunnels, liquid piston fillers, induction cappers).
+* **20 WhatsApp Chat Transcripts:** Realistic negotiations covering pricing terms, 50% advance conditions, layout drawings, and sample test seals.
+* **5 Sales Reps:** Arun Verma, Neha Patil, Karan Mehta, Vikram Singh, and Sneha Rao.
 
 ---
 
-## 📄 Submission Files
-* `PLAN.md`: Full architecture plan and technical design.
-* `SUBMISSION_NOTE.md`: Half-page submission note required by the assignment prompt.
+## 📄 License
+This project is open-source and available under the MIT License.
