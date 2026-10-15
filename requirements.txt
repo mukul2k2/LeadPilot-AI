@@ -1,0 +1,16 @@
+# System Prerequisites
+node>=18.18.0
+npm>=9.0.0
+
+# Production Dependencies (Node.js ecosystem)
+# Install via: npm install
+next>=15.0.0
+react>=19.0.0
+react-dom>=19.0.0
+@google/genai>=2.29.0
+lucide-react>=1.57.0
+
+# Styling & Build Engine
+tailwindcss>=4.0.0
+@tailwindcss/turbopack>=4.0.0
+typescript>=5.0.0

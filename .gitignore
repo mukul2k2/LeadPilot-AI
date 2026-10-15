@@ -39,3 +39,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Assignment specific files (do not commit to public repository)
+New FDE Assignment.pdf
+PLAN.md
+SUBMISSION_NOTE.md
