@@ -1,8 +1,10 @@
+import { Suspense } from 'react';
 import { Dashboard } from '@/components/Dashboard';
 
-// Opt out of instant-navigation validation in Next.js 16/Turbopack
-export const instant = false;
-
 export default function Page() {
-  return <Dashboard />;
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-slate-100/80" />}>
+      <Dashboard />
+    </Suspense>
+  );
 }
